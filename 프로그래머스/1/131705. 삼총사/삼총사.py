@@ -1,12 +1,11 @@
 def solution(number):
     count = 0
 
-    for a in range(len(number) - 2):
-        for b in range(1, len(number) - 1):
-            for c in range(2, len(number)):
-                sum = number[a] + number[b] + number[c]
-                if (sum == 0) and a < b and b < c:
-                    print(number[a], number[b], number[c])
+    for i in range(len(number) - 2):
+        for j in range(i+1, len(number) - 1):
+            for k in range(j+1, len(number)):
+                sum = number[i] + number[j] + number[k]
+                if sum == 0:
                     count += 1
 
     return count
