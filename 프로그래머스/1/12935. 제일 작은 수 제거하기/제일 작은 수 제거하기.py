@@ -4,6 +4,3 @@ def solution(arr):
         arr.remove(num)
         return arr
     return [-1]
-
-
-print(solution([10]))
