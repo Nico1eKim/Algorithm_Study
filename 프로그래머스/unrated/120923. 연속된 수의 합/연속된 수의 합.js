@@ -1,18 +1,15 @@
 function solution(num, total) {
   let answer = [];
-  let x = Math.floor(total / num);
-  let limit = Math.floor(num / 2);
+  let x = total / num;
+  let limit = (num - 1) / 2;
 
-  if (num % 2 !== 0) {
-    for (let i = x - limit; i <= x + limit; i++) {
-      answer.push(i);
-    }
-  } else {
-    // 3 - 2 + 1
-    for (let i = x - limit + 1; i <= x + limit; i++) {
-      answer.push(i);
-    }
+  // 5, 15: 3 - 2 ~ 3 + 2
+  // 4, 14: 3.5 - 1.5 ~ 3.5 + 1.5
+  for (let i = x - limit; i <= x + limit; i++) {
+    answer.push(i);
   }
 
   return answer;
 }
+
+console.log(solution(4, 14));
