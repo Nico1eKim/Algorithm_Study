@@ -1,14 +1,22 @@
 function solution(k, m, score) {
-  let answer = 0;
-  const max_box = Math.floor(score.length / m); // 최대 사과 상자 개수
-  let index = m - 1; // 각 상자의 최저값이 있는 인덱스
+  var answer = 0;
 
-  // [4,4,4,4,4,4,2,2,2,2,1,1]
-  score.sort((a, b) => b - a); // 내림차순으로 정렬
+  // 1. 숫자 배열을 오름차순 정렬
+  score.sort(function (a, b) {
+    if (a > b) return 1;
+    if (a === b) return 0;
+    if (a < b) return -1;
+  });
 
-  for (let i = 0; i < max_box; i++) {
-    answer += score[index] * m; // 최저 점수 * 사과 개수
-    index += m;
+  // 2. 나머지가 있다면 (버리는 사과) splice로 나머지를 잘라낸다
+  if (score.length % m !== 0) {
+    score.splice(0, score.length % m);
+  }
+
+  // 3. 합산
+  const newArr = [];
+  for (let i = 0; i < score.length; i += m) {
+    answer += score[i] * m;
   }
 
   return answer;
